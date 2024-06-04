@@ -7,7 +7,6 @@ const UpdateProduct = () => {
   console.log(data[0].title);
   const navigate = useNavigate();
 
-
   //update product
   const handleUpdateUser = (event) => {
     event.preventDefault();
@@ -25,10 +24,10 @@ const UpdateProduct = () => {
       detail,
       image,
     };
-    
+
     console.log(updateProduct);
 
-    fetch(`http://localhost:5000/products/${data[0]?._id}`, {
+    fetch(`https://task-final-server.vercel.app/products/${data[0]?._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

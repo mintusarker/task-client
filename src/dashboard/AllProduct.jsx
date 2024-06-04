@@ -6,7 +6,7 @@ const AllProduct = () => {
   console.log(products);
 
   useEffect(() => {
-    fetch("http://localhost:5000/product")
+    fetch("https://task-final-server.vercel.app/product")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

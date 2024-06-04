@@ -45,7 +45,7 @@ const SignUp = () => {
             saveUser(data.name, data.email);
           })
           .catch((err) => console.log(err));
-        navigate('/')
+        navigate("/");
       })
       .catch((error) => {
         console.error(error);
@@ -69,7 +69,7 @@ const SignUp = () => {
   // save user information
   const saveUser = (name, email) => {
     const user = { name, email };
-    fetch("http://localhost:5000/users", {
+    fetch("https://task-final-server.vercel.app/users", {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -18,7 +18,7 @@ const MyProducts = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/products?email=${user?.email}`
+          `https://task-final-server.vercel.app/products?email=${user?.email}`
         );
         const data = await res.json();
         // console.log(data);
@@ -35,7 +35,7 @@ const MyProducts = () => {
 
   //delete product
   const handleDeleteProduct = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://task-final-server.vercel.app/products/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -47,9 +47,6 @@ const MyProducts = () => {
         }
       });
   };
-
-
-  
 
   return (
     <div className="">
