@@ -42,10 +42,10 @@ const SignUp = () => {
         };
         updateUser(userInfo)
           .then(() => {
-            saveUser(data.name, data.email, data.option);
+            saveUser(data.name, data.email);
           })
           .catch((err) => console.log(err));
-        // navigate('/')
+        navigate('/')
       })
       .catch((error) => {
         console.error(error);
@@ -69,7 +69,7 @@ const SignUp = () => {
   // save user information
   const saveUser = (name, email) => {
     const user = { name, email };
-    fetch("https://used-products-resale-server-alpha.vercel.app/users", {
+    fetch("http://localhost:5000/users", {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -3,11 +3,12 @@ import Main from "../layout/Main";
 import Home from "../componant/home/Home";
 import Login from "../componant/Login";
 import SignUp from "../componant/SignUp";
-import Dashboard from "../dashboard/Dashboard";
 import AddProduct from "../dashboard/AddProduct";
 import Users from "../dashboard/Users";
 import MyProducts from "../dashboard/MyProducts";
 import UpdateProduct from "../dashboard/UpdateProduct";
+import Dashboard from "../layout/Dashboard";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "/dashboard/add-product",

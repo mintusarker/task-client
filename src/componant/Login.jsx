@@ -1,19 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import app from "../firebase/Firebase.config";
 
 // import useToken from '../../Hooks/useToken';
 
 const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const { signIn } = useContext(AuthContext);
+  const { userLogin } = useContext(AuthContext);
   const [loginError, setLoginError] = useState("");
+  const emailRef = useRef(null);
+  const auth = getAuth(app);
 
   // const [loginEmail, setLoginEmail] = useState('');
   // const [token] = useToken(loginEmail);
@@ -27,14 +26,18 @@ const Login = () => {
   //     navigate(from, { replace: true });
   // };
 
-  const handleLogin = (data) => {
-    console.log(data);
+  const handleLogin = (event) => {
+    event.preventDefault();
     setLoginError("");
-    signIn(data.email, data.password)
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    userLogin(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // setLoginEmail(data.email);
+        // setLoginEmail(email);
         toast.success("User Login successfully");
         navigate(from, { replace: true });
         // navigate('/');
@@ -45,59 +48,83 @@ const Login = () => {
       });
   };
 
+  // reset password
+  const handleResetPassword = () => {
+    const email = emailRef.current.value;
+    if (!email) {
+      console.log("need email address");
+      return;
+    } else if (
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+    ) {
+      console.log("please write a valid email");
+      return;
+    }
+    // send validation email
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        toast.success("please check your email");
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <div className="h-[600px] flex justify-center items-center">
-      <div className="w-96 p-7 shadow-2xl shadow-slate-500">
-        <h2 className="text-xl font-semibold text-center">Login</h2>
-        <form onSubmit={handleSubmit(handleLogin)}>
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
-            <input
-              type="email"
-              {...register("email", { required: "Email Address is required" })}
-              className="input input-bordered w-full max-w-xs"
-            />
-            {errors.email && (
-              <p className="text-red-600">{errors.email?.message}</p>
-            )}
-          </div>
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text">Password</span>
-            </label>
-            <input
-              type="password"
-              className="input input-bordered w-full max-w-xs"
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be 6 characters or longer",
-                },
-              })}
-            />
-            {errors.password && (
-              <p className="text-red-600">{errors.password?.message}</p>
-            )}
-            {/* <label className="label"><span className="label-text">Forget Password?</span></label> */}
-          </div>
-          <input
-            className="btn btn-accent my-3 w-full max-w-xs"
-            value="Login"
-            type="submit"
-          />
-          <div>
-            {loginError && <p className="text-red-600">{loginError}</p>}
-          </div>
-        </form>
-        <p>
-          New to here!{" "}
-          <Link to="/signup" className="text-secondary">
-            Create new account
-          </Link>{" "}
-        </p>
+    <div className="hero w-full my-5">
+      <div className="hero-content flex-col">
+        <div className="card flex-shrink-0 w-full shadow-2xl py-11">
+          <h1 className="text-5xl text-center text-blue-500 font-semibold">
+            Login
+          </h1>
+          <form onSubmit={handleLogin} className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                ref={emailRef}
+                type="text"
+                name="email"
+                placeholder="email"
+                className="input input-bordered w-96"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="password"
+                className=" w-96 input input-bordered"
+              />
+              <label className="label">
+                <a
+                  href="#"
+                  onClick={handleResetPassword}
+                  className="label link link-hover"
+                >
+                  Forgot password?
+                </a>
+              </label>
+            </div>
+            <div className="form-control mt-2">
+              <input
+                className="btn btn-accent text-lg  w-96"
+                type="submit"
+                value="Login"
+              />
+              {loginError && <p className="text-red-600">{loginError}</p>}
+            </div>
+          </form>
+          <p className="text-center">
+            New to Here ! Please
+            <Link className="text-orange-600 font-bold ml-2" to="/sign_up">
+              Sign Up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
