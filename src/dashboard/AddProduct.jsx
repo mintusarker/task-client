@@ -43,7 +43,7 @@ const AddProduct = () => {
 
         toast.success("Product added successfully");
         reset();
-        // navigate("/dashboard/myproduct");
+        navigate("/dashboard/my-products");
       });
   };
 
@@ -110,7 +110,7 @@ const AddProduct = () => {
             <option>06-Apex</option>
             <option>07-Vans</option>
             <option>08-Woodland</option>
-            <option>Sketchers</option>
+            <option>09-Sketchers</option>
           </select>
         </div>
 

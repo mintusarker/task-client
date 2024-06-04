@@ -48,11 +48,13 @@ const MyProducts = () => {
       });
   };
 
-  return (
-    <div className="mt-10">
-      <h2 className="text-2xl pl-5 my-5">My Products: {products?.length}</h2>
 
-      <div className="gap-5 px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  
+
+  return (
+    <div className="">
+      <h2 className="text-2xl pl-5 my-5">My Products: {products?.length}</h2>
+      <div className="gap-5 px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
         {products?.map((product) => (
           <Products
             key={product._id}

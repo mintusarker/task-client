@@ -7,28 +7,31 @@ const Products = ({ product, handleDeleteProduct }) => {
   console.log(product);
 
   return (
-    <div>
-      <div className="border bg-base-100 shadow-xl">
-        <figure>
-          <img className="h-40 w-full" src={product?.image} alt="" />
-        </figure>
-        <div className="p-5">
-          <h2 className="card-title">{product?.name}</h2>
-          <p>Price: {product?.price}</p>
-          <p>Description: {product?.detail}</p>
-          <div className="card-actions inline-grid">
-            <button
-              onClick={() => handleDeleteProduct(product?._id)}
-              className="btn btn-sm btn-primary"
-            >
-              Delete
-            </button>
-            {/* <button className="btn btn-sm btn-primary">Available</button> */}
-           <Link to={'/'}> <button  className="btn btn-sm btn-primary">Update</button></Link>
-          </div>
+    <div className="border bg-base-100 shadow-xl">
+      <figure>
+        <img className="h-40 w-full" src={product?.image} alt="" />
+      </figure>
+      <div className="p-5 card-body">
+        <h2 className="card-title">Brand: {product?.brand}</h2>
+        <p>Title: {product?.title}</p>
+        <p>category: {product?.category}</p>
+        <p>Price: {product?.price} $</p>
+        <p className="text-justify">Description: {product?.detail}</p>
+        <div className="flex justify-between p-3">
+          <button
+            onClick={() => handleDeleteProduct(product?._id)}
+            className="btn btn-sm btn-warning"
+          >
+            Delete
+          </button>
+          <Link to={`/dashboard/update-product/${product?._id}`}>
+            <button className="btn btn-sm btn-error">Update</button>
+          </Link>
         </div>
       </div>
     </div>
+
+   
   );
 };
 
