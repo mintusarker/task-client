@@ -22,6 +22,9 @@ const Navbar = () => {
       <li>
         <Link to="/dashboard">Dashboard</Link>
       </li>
+      <li>
+        <Link to="/Shop">Shop</Link>
+      </li>
 
       {user?.uid ? (
         <>
@@ -60,7 +63,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-black rounded-box w-52 capitalize"
+              className="menu menu-sm dropdown-content z-10 mt-3 p-2 shadow bg-black rounded-box w-52 capitalize"
             >
               {menuItems}
             </ul>

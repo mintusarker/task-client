@@ -17,7 +17,7 @@ const Products = ({ product, handleDeleteProduct }) => {
         <p>category: {product?.category}</p>
         <p>Price: {product?.price} $</p>
         <p className="text-justify">Description: {product?.detail}</p>
-        <div className="flex justify-between p-3">
+        <div className="flex justify-between">
           <button
             onClick={() => handleDeleteProduct(product?._id)}
             className="btn btn-sm btn-warning"

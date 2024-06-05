@@ -5,7 +5,7 @@ const SingleProduct = ({product}) => {
 
 
     const handlePayment =()=> {
-        toast.error(`Payment method not implement for ${product?.title} right now!!`)
+        toast.error(`Payment method not implement for ${product?.title} right now!!`, {duration: 1000})
     }
     return (
         <div className="card card-compact bg-base-100 shadow-xl">

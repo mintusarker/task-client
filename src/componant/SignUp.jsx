@@ -42,6 +42,8 @@ const SignUp = () => {
         };
         updateUser(userInfo)
           .then(() => {
+            const email = data.email;
+            getToken(email);
             saveUser(data.name, data.email);
           })
           .catch((err) => console.log(err));
@@ -60,6 +62,7 @@ const SignUp = () => {
         // console.log(user)
         const name = user.displayName;
         const email = user.email;
+        getToken(email);
         saveUser(name, email);
         navigate(from, { replace: true });
       })
@@ -69,7 +72,7 @@ const SignUp = () => {
   // save user information
   const saveUser = (name, email) => {
     const user = { name, email };
-    fetch("https://task-final-server.vercel.app/users", {
+    fetch("http://localhost:5000/users", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -81,6 +84,20 @@ const SignUp = () => {
         // setUserEmail(email);
         console.log("save user", data);
         // navigate('/');
+      });
+  };
+
+  //  Get jwt token
+  const getToken = (email) => {
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log(data.accessToken);
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+          // navigate('/')
+        }
       });
   };
 

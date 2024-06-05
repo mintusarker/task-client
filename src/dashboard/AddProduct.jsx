@@ -30,7 +30,7 @@ const AddProduct = () => {
     console.log(product);
 
     // save product information to database
-    fetch("https://task-final-server.vercel.app/products", {
+    fetch("http://localhost:5000/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -48,7 +48,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="px-40">
+    <div className="px-40 mt-14 mb-28">
       <h2 className="text-2xl mb-6">Add A Product</h2>
 
       <form

@@ -4,11 +4,14 @@ import Home from "../componant/home/Home";
 import Login from "../componant/Login";
 import SignUp from "../componant/SignUp";
 import AddProduct from "../dashboard/AddProduct";
-import Users from "../dashboard/Users";
 import MyProducts from "../dashboard/MyProducts";
 import UpdateProduct from "../dashboard/UpdateProduct";
 import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../dashboard/AllUsers";
+import AllProductList from "../dashboard/AllProductList";
+import DashBoardHome from "../dashboard/DashBoardHome";
+import Shop from "../Shop/Shop";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,10 @@ const router = createBrowserRouter([
         path: "/sign_up",
         element: <SignUp></SignUp>,
       },
+      {
+        path: "/shop",
+        element: <Shop></Shop>,
+      },
     ],
   },
   {
@@ -38,22 +45,30 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        path: '/dashboard',
+        element: <DashBoardHome></DashBoardHome>
+      },
+      {
         path: "/dashboard/add-product",
         element: <AddProduct></AddProduct>,
       },
       {
         path: "/dashboard/all-users",
-        element: <Users></Users>,
+        element: <AllUsers></AllUsers>,
       },
       {
         path: "/dashboard/my-products",
         element: <MyProducts></MyProducts>,
       },
       {
+        path: "/dashboard/all-products",
+        element: <AllProductList></AllProductList>
+      },
+      {
         path: "/dashboard/update-product/:id",
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(`https://task-final-server.vercel.app/products/${params?.id}`),
+          fetch(`http://localhost:5000/products/${params?.id}`),
       },
     ],
   },

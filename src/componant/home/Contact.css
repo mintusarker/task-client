@@ -1,0 +1,8 @@
+.contact {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/pics.jpg') no-repeat;
+    color: #fff;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: auto; 
+}
