@@ -26,6 +26,10 @@ const AllUsers = () => {
   const handleUserRemove = (id) => {
     fetch(`http://localhost:5000/users/${id}`, {
       method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      },
     })
       .then((res) => res.json())
       .then((data) => {

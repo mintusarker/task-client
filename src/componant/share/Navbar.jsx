@@ -1,14 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthProvider";
+import UserModal from "../userModal/UserModal";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [showModal, setShowModal] = useState(false);
+  console.log(showModal);
 
   const handleLogout = () => {
     logOut()
       .then(() => {})
       .catch((err) => console.log(err));
+  };
+
+  //modal popup
+  const showModalHandle = () => {
+    setShowModal(true);
   };
 
   const menuItems = (
@@ -31,6 +39,14 @@ const Navbar = () => {
           <li onClick={handleLogout}>
             <Link>Logout</Link>
           </li>
+          <li>
+            <button
+              onClick={()=>showModalHandle()}
+              className="bg-gradient-to-tr to-black from-blue-500"
+            >
+              Profile
+            </button>
+          </li>
         </>
       ) : (
         <li>
@@ -42,7 +58,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar lg:px-6 md:px-6 mx-auto bg-gradient-to-t to-gray-600 from-blue-900 text-white justify-between">
+      <div className="navbar relative lg:px-6 md:px-6 mx-auto bg-gradient-to-t to-gray-600 from-blue-900 text-white justify-between">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost md:hidden lg:hidden">
@@ -96,6 +112,10 @@ const Navbar = () => {
           </svg>
         </label>
       </div>
+
+      {showModal && <UserModal
+      setShowModal={setShowModal}
+      ></UserModal>}
     </div>
   );
 };

@@ -6,7 +6,6 @@ import { AuthContext } from "../auth/AuthProvider";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import app from "../firebase/Firebase.config";
 
-// import useToken from '../../Hooks/useToken';
 
 const Login = () => {
   const { userLogin } = useContext(AuthContext);
@@ -14,17 +13,12 @@ const Login = () => {
   const emailRef = useRef(null);
   const auth = getAuth(app);
 
-  // const [loginEmail, setLoginEmail] = useState('');
-  // const [token] = useToken(loginEmail);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
 
-  // if (token) {
-  //     navigate(from, { replace: true });
-  // };
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -37,7 +31,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // setLoginEmail(email);
+        getToken(email)
         toast.success("User Login successfully");
         navigate(from, { replace: true });
         // navigate('/');
@@ -61,12 +55,25 @@ const Login = () => {
       return;
     }
     // send validation email
-
     sendPasswordResetEmail(auth, email)
       .then(() => {
         toast.success("please check your email");
       })
       .catch((err) => console.log(err));
+  };
+
+  //  Get jwt token
+  const getToken = (email) => {
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log(data.accessToken);
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+          // navigate('/')
+        }
+      });
   };
 
   return (

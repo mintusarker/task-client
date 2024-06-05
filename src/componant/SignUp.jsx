@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
-// import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
   const {
@@ -17,16 +16,11 @@ const SignUp = () => {
 
   const [signUpError, setSignUpError] = useState("");
 
-  // const [userEmail, setUserEmail] = useState('');
-  // const [token] = useToken(userEmail);
+
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
-  // if (token) {
-  //     navigate('/')
-  // }
 
   const handleSignUp = (data) => {
     console.log(data);
@@ -81,7 +75,6 @@ const SignUp = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // setUserEmail(email);
         console.log("save user", data);
         // navigate('/');
       });

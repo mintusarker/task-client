@@ -18,6 +18,10 @@ const AllProductList = () => {
   const handleProductRemove = (id) => {
     fetch(`http://localhost:5000/products/${id}`, {
       method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      },
     })
       .then((res) => res.json())
       .then((data) => {
