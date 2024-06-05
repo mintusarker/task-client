@@ -7,7 +7,7 @@ const AllUsers = () => {
   //   console.log(users);
 
   //   useEffect(() => {
-  //     fetch("http://localhost:5000/users")
+  //     fetch(" https://task-final-server.vercel.app/users")
   //       .then((res) => res.json())
   //       .then((data) => setUsers(data));
   //   }, []);
@@ -15,7 +15,7 @@ const AllUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users`);
+      const res = await fetch(` https://task-final-server.vercel.app/users`);
       const data = await res.json();
       console.log(data);
       return data;
@@ -24,11 +24,11 @@ const AllUsers = () => {
 
   //delete users
   const handleUserRemove = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(` https://task-final-server.vercel.app/users/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem('accessToken')}`
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())

@@ -16,8 +16,6 @@ const SignUp = () => {
 
   const [signUpError, setSignUpError] = useState("");
 
-
-
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -66,7 +64,7 @@ const SignUp = () => {
   // save user information
   const saveUser = (name, email) => {
     const user = { name, email };
-    fetch("http://localhost:5000/users", {
+    fetch(" https://task-final-server.vercel.app/users", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -82,7 +80,7 @@ const SignUp = () => {
 
   //  Get jwt token
   const getToken = (email) => {
-    fetch(`http://localhost:5000/jwt?email=${email}`)
+    fetch(` https://task-final-server.vercel.app/jwt?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -97,7 +95,8 @@ const SignUp = () => {
   return (
     <div className="h-[800px] flex justify-center items-center">
       <div className="w-96 p-7 shadow-2xl shadow-black">
-        <h2 className="text-xl text-center">Sign Up</h2>
+        <h1 className="text-5xl text-center text-blue-500 font-semibold">
+            Sign Up</h1>
 
         <form onSubmit={handleSubmit(handleSignUp)}>
           <div className="form-control w-full max-w-xs">

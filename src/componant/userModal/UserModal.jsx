@@ -4,17 +4,25 @@ import { AuthContext } from "../../auth/AuthProvider";
 const UserModal = ({ setShowModal }) => {
   const { user } = useContext(AuthContext);
   return (
-    <div className="modal-confirm absolute right-0 px-6 w-auto bg-slate-200 rounded-lg shadow-lg text-center">
-      {/* <div className="avatar">
-        <div className="w-24 mt-14 rounded-full">
-          <img src="" />
+    <div className="modal-confirm absolute z-50 right-0 px-6 w-auto bg-gray-300 rounded-lg shadow-lg text-center">
+      {user?.photoURL ? (
+        <div className="avatar">
+          <div className="w-24 mt-14 rounded-full">
+            <img src={user?.photoURL} />
+          </div>
         </div>
-      </div> */}
-      <div className="py-16">
-        <h3 className="text-black my-7 p-1 rounded-md shadow-lg shadow-slate-800 text-lg">
+      ) : (
+        <div className="avatar">
+          <div className="w-24 mt-14 rounded-full">
+            <img src="" />
+          </div>
+        </div>
+      )}
+      <div className="py-6">
+        <h3 className="text-black my-7 p-1 rounded-md shadow-md shadow-slate-800 text-lg">
           Name: {user?.displayName}
         </h3>
-        <h3 className="text-black my-7 text-lg p-1 rounded-md shadow-lg shadow-slate-800">
+        <h3 className="text-black my-7 text-lg p-1 rounded-md shadow-md shadow-slate-800">
           Email: {user?.email}
         </h3>
       </div>

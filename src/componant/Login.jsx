@@ -6,19 +6,16 @@ import { AuthContext } from "../auth/AuthProvider";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import app from "../firebase/Firebase.config";
 
-
 const Login = () => {
   const { userLogin } = useContext(AuthContext);
   const [loginError, setLoginError] = useState("");
   const emailRef = useRef(null);
   const auth = getAuth(app);
 
-
   const location = useLocation();
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
-
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -31,7 +28,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        getToken(email)
+        getToken(email);
         toast.success("User Login successfully");
         navigate(from, { replace: true });
         // navigate('/');
@@ -64,7 +61,7 @@ const Login = () => {
 
   //  Get jwt token
   const getToken = (email) => {
-    fetch(`http://localhost:5000/jwt?email=${email}`)
+    fetch(` https://task-final-server.vercel.app/jwt?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

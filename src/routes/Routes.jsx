@@ -45,8 +45,8 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '/dashboard',
-        element: <DashBoardHome></DashBoardHome>
+        path: "/dashboard",
+        element: <DashBoardHome></DashBoardHome>,
       },
       {
         path: "/dashboard/add-product",
@@ -62,13 +62,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/all-products",
-        element: <AllProductList></AllProductList>
+        element: <AllProductList></AllProductList>,
       },
       {
         path: "/dashboard/update-product/:id",
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params?.id}`),
+          fetch(` https://task-final-server.vercel.app/products/${params?.id}`),
       },
     ],
   },

@@ -6,21 +6,20 @@ const AllProductList = () => {
   const { data: products = [], refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/product`);
+      const res = await fetch(` https://task-final-server.vercel.app/product`);
       const data = await res.json();
       console.log(data);
       return data;
     },
   });
 
-
   //delete product
   const handleProductRemove = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(` https://task-final-server.vercel.app/products/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem('accessToken')}`
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
