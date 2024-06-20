@@ -1,5 +1,5 @@
 
-projects Name: e-shop
+projects Name: e-shop, 
 category: shopping site
 
 technology: react-vite, tailwind, useQuery, useForm, firebase, react-router-dom etc (frontend).
