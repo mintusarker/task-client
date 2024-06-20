@@ -26,8 +26,8 @@ const Services = () => {
     ]
 
     return (
-        <div className='px-16 pt-14 pb-[150px]'>
-            <p className='text-3xl font-semibold font-serif py-7'>Why should you buy from here?</p>
+        <div className='px-11 pt-14 pb-[150px]'>
+            <p className='text-3xl font-semibold py-7'>Why should you buy from here?</p>
             <div className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6'>
                 {opinion.length &&
                     opinion.map(opi => <div className='border shadow-md shadow-slate-400 p-2 rounded-lg' key={opi?.id}>

@@ -2,10 +2,12 @@ import React from "react";
 import "./Banner.css";
 
 import img3 from '../../assets/piiicc.jpg'
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <div className="lg:pb-5">
+    <div>
+      <div className="lg:pb-5">
       <div
         style={{
           backgroundImage: `url(${img3})`,
@@ -25,6 +27,9 @@ const Banner = () => {
           </div>
         </div>
       </div>
+    </div>
+
+    <Link className="flex items-center justify-center mt-20 skeleton btn btn-md btn-accent w-28 mx-auto rounded text-xl" to='/shop'>Shopping</Link>
     </div>
   );
 };
