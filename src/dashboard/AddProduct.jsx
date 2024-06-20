@@ -143,8 +143,8 @@ const AddProduct = () => {
               required: "Title is required",
             })}
           />
-          {errors.price && (
-            <p className="text-red-600">{errors.price.message}</p>
+          {errors.title && (
+            <p className="text-red-600">{errors.title.message}</p>
           )}
         </div>
 

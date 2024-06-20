@@ -70,9 +70,8 @@ const AllUsers = () => {
                   </div>
                 </td> */}
                 <td>{user?.name}</td>
-                <td>{user?.email} tk</td>
+                <td>{user?.email}</td>
                 <td className="text-green-900">
-                  {" "}
                   {user?.role ? user?.role : "User"}{" "}
                 </td>
 
