@@ -9,7 +9,7 @@ const SingleProduct = ({product}) => {
     }
     return (
         <div className="card card-compact bg-base-100 shadow-xl">
-        <figure><img className='w-full' src={product?.image} alt="Shoes" /></figure>
+        <figure><img className='w-full h-44' src={product?.image} alt="Shoes" /></figure>
         <div className="card-body">
           <h2 className="card-title">{product?.title} for {product?.category}</h2>
           <p>Brand: {product?.brand}</p>

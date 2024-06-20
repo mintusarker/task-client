@@ -20,7 +20,7 @@ const Shop = () => {
   const handleOnChange = async (event) => {
     let key = event.target.value;
     console.log(key);
-    fetch(`http://localhost:5000/search/${key}`)
+    fetch(`https://task-final-server.vercel.app/search/${key}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   };
@@ -59,7 +59,7 @@ const Shop = () => {
         className="border border-slate-400 w-72 h-10 my-9 outline-none justify-center flex mx-auto px-9 py-2 mt-6 rounded-full"
       />
 
-      <div className="text-center flex justify-center gap-12 mt-7">
+      <div className="text-center flex flex-wrap justify-center gap-5 mt-7">
         <button
           onClick={handleChildDress}
           className="btn btn-sm btn-neutral w-20"
@@ -85,7 +85,7 @@ const Shop = () => {
           All Item
         </button>
       </div>
-      <div className="grid gap-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 px-14 my-16">
+      <div className="grid gap-6 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-1 px-24 my-16">
         {products?.map((product) => (
           <SingleProduct key={product?._id} product={product}></SingleProduct>
         ))}
