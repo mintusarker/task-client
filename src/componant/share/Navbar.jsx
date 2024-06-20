@@ -4,19 +4,21 @@ import { AuthContext } from "../../auth/AuthProvider";
 import UserModal from "../userModal/UserModal";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
 
-  const handleLogout = () => {
-    logOut()
-      .then(() => {})
-      .catch((err) => console.log(err));
-  };
+  const [profile, setProfile] = useState(true);
+  console.log(profile);
 
   //modal popup
   const showModalHandle = () => {
     setShowModal(true);
+    setProfile(false);
+  };
+
+  const showModalHandleOff = () => {
+    setShowModal(false);
+    setProfile(true);
   };
 
   const menuItems = (
@@ -24,28 +26,39 @@ const Navbar = () => {
       <li>
         <Link to="/">home</Link>
       </li>
-      <li>
-        <Link to="/sign_up">SignUp</Link>
-      </li>
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
+
       <li>
         <Link to="/Shop">Shop</Link>
       </li>
 
+      <li>
+        <Link to="/dashboard">Dashboard</Link>
+      </li>
+
+      <li>
+        <Link to="/sign_up">SignUp</Link>
+      </li>
+
       {user?.uid ? (
         <>
-          <li onClick={handleLogout}>
-            <Link>Logout</Link>
-          </li>
           <li>
-            <button
-              onClick={()=>showModalHandle()}
-              className="bg-gradient-to-tr to-black from-blue-500"
-            >
-              Profile
-            </button>
+            {profile ? (
+              <button
+                onClick={() => showModalHandle()}
+                className="bg-gradient-to-tr to-black from-blue-500"
+              >
+                Profile
+              </button>
+            ) : !profile ? (
+              <button
+                onClick={() => showModalHandleOff()}
+                className="bg-gradient-to-tr to-black from-blue-500"
+              >
+                Profile
+              </button>
+            ) : (
+              ""
+            )}
           </li>
         </>
       ) : (
@@ -113,9 +126,7 @@ const Navbar = () => {
         </label>
       </div>
 
-      {showModal && <UserModal
-      setShowModal={setShowModal}
-      ></UserModal>}
+      {showModal && <UserModal setShowModal={setShowModal}></UserModal>}
     </div>
   );
 };
